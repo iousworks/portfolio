@@ -3,504 +3,1125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jenny M. Subrastas - IOUS</title>
+  <title>Jenny M. Subrastas - Technical Stack Dashboard</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="profile pic.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      line-height: 1.6;
-      background-color: #fff;
-      color: #222;
-      transition: background-color 0.3s ease, color 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    h1, h2 {
-      margin-bottom: 0.2em;
-    }
-    h1 {
-      font-size: 2em;
-    }
-    h2 {
-      font-size: 1.4em;
-      margin-top: 1.4em;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 0.2em;
-      transition: border-bottom-color 0.3s ease;
-    }
+    
+    /* Remove all underlines globally */
     a {
-      color: #0066cc;
-      text-decoration: none;
-      transition: color 0.3s ease;
+      text-decoration: none !important;
     }
+    
     a:hover {
-      text-decoration: underline;
+      text-decoration: none !important;
     }
-   ul {
-margin: 0;
-padding-left: 20px;
-}
-.header {
-text-align: center;
-margin-bottom: 20px;
-}
-.profile-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 1rem;
-}
-.profile-title {
-margin: 0;
-font-size: 2em;
-}
-.nav-links {
-display: flex;
-gap: 0.5rem;
-}
-.nav-link {
-color: #0066cc;
-text-decoration: none;
-padding: 0.5rem 1rem;
-border-radius: 20px;
-border: 2px solid #e5e7eb;
-font-weight: 500;
-font-size: 0.9rem;
-transition: all 0.3s ease;
-background: #f8fafc;
-}
-.nav-link:hover {
-background: #e5e7eb;
-border-color: #0066cc;
-}
-.nav-link.active {
-background: #0066cc;
-color: white;
-border-color: #0066cc;
-}
-.dark-mode .nav-link {
-background: #374151;
-border-color: #4b5563;
-color: #d1d5db;
-}
-.dark-mode .nav-link:hover {
-background: #4b5563;
-border-color: #66aaff;
-}
-.dark-mode .nav-link.active {
-background: #66aaff;
-color: #1f2937;
-border-color: #66aaff;
-}
-.download-resume {
-margin-top: 0.5em;
-font-size: 1em;
-}
-.section {
-margin-bottom: 1.5em;
-}
-.dark-mode {
-background-color: #121212;
-color: #e0e0e0;
-}
-.dark-mode h2 {
-border-bottom-color: #444;
-}
-.dark-mode a {
-color: #66aaff;
-}
-.dark-mode .toggle-btn {
-background-color: #333;
-color: #e0e0e0;
-border-color: #555;
-}
-.toggle-btn {
-position: fixed;
-top: 10px;
-right: 10px;
-padding: 6px 10px;
-border: 1px solid #666;
-border-radius: 4px;
-background-color: #fff;
-color: #222;
-cursor: pointer;
-font-size: 12px;
-transition: all 0.3s ease;
-}
-.toggle-btn:hover {
-background-color: #f0f0f0;
-}
-.cert-link {
-font-weight: bold;
-color: #0066cc;
-text-decoration: none;
-border-bottom: 1px dotted #0066cc;
-}
-.cert-link:hover {
-background-color: #f0f8ff;
-text-decoration: none;
-}
-.dark-mode .cert-link {
-color: #66aaff;
-border-bottom-color: #66aaff;
-}
-.dark-mode .cert-link:hover {
-background-color: rgba(102, 170, 255, 0.1);
-}
-.recommendation {
-background-color: #f8f9fa;
-border-left: 4px solid #0066cc;
-padding: 20px;
-margin: 15px 0;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-transition: all 0.3s ease;
-}
-.recommendation:hover {
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-transform: translateY(-2px);
-}
-.recommendation-text {
-font-style: italic;
-margin-bottom: 15px;
-color: #555;
-line-height: 1.6;
-}
-.recommendation-author {
-font-weight: bold;
-color: #333;
-margin-bottom: 5px;
-}
-.recommendation-title {
-color: #666;
-font-size: 0.9em;
-}
-.dark-mode .recommendation {
-background-color: #2a2a2a;
-border-left-color: #66aaff;
-box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-}
-.dark-mode .recommendation:hover {
-box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
-}
-.dark-mode .recommendation-text {
-color: #ccc;
-}
-.dark-mode .recommendation-author {
-color: #e0e0e0;
-}
-.dark-mode .recommendation-title {
-color: #aaa;
-}
-.project-link {
-display: inline-block;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-color: white !important;
-text-decoration: none !important;
-padding: 8px 16px;
-border-radius: 20px;
-font-weight: bold;
-font-size: 0.95em;
-transition: all 0.3s ease;
-box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-.project-link:hover {
-transform: translateY(-2px);
-box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-text-decoration: none !important;
-}
-.dark-mode .project-link {
-background: linear-gradient(135deg, #66aaff 0%, #8a7fff 100%);
-}
-
-/* Contact Form Styling */
-.contact-form {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            border: 1px solid #e5e7eb;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: Arial, sans-serif;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #0066cc;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .submit-btn {
-            background: #0066cc;
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .submit-btn:hover {
-            background: #0052a3;
-            transform: translateY(-2px);
-        }
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .contact-info a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .dark-mode .contact-form {
-            background: #2a2a2a;
-            border-color: #444;
-        }
-        .dark-mode .form-group label {
-            color: #e0e0e0;
-        }
-        .dark-mode .form-group input,
-        .dark-mode .form-group textarea {
-            background: #333;
-            border-color: #555;
-            color: #e0e0e0;
-        }
-        .dark-mode .form-group input:focus,
-        .dark-mode .form-group textarea:focus {
-            border-color: #66aaff;
-        }
-        .dark-mode .submit-btn {
-            background: #66aaff;
-            color: #1f2937;
-        }
-        .dark-mode .submit-btn:hover {
-            background: #5599ee;
-        }
-
-        /* Responsive Navigation */
-@media (max-width: 768px) {
-.profile-header {
-flex-direction: column;
-gap: 1rem;
-text-align: center;
-}
-.nav-links {
-flex-wrap: wrap;
-justify-content: center;
-gap: 0.5rem;
-}
-.nav-link {
-padding: 0.4rem 0.8rem;
-font-size: 0.8rem;
-}
-}
-
-@media (max-width: 480px) {
-.nav-links {
-flex-direction: column;
-width: 100%;
-}
-.nav-link {
-width: 100%;
-text-align: center;
-}
-}
- </style>
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Navigation */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+    }
+    
+    .nav-tab {
+      background: transparent;
+      color: #a0a0a0;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    
+    .nav-tab:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    
+    .nav-tab:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .nav-tab.active {
+      background: rgba(0, 255, 255, 0.2);
+      color: #00ffff;
+      border-color: #00ffff;
+    }
+    
+    .nav-tab:hover {
+      background: rgba(0, 255, 255, 0.1);
+      color: #00ffff;
+    }
+    
+    .view-toggle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: rgba(0, 255, 255, 0.2);
+      border: 1px solid #00ffff;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 22px;
+      height: 22px;
+      background: #00ff88;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #00ffff, #ffffff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+    
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: #a0a0a0;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-graphics {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin: 2rem 0;
+    }
+    
+    .tech-hexagon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.05));
+      border: 2px solid #00ffff;
+      position: relative;
+      margin: 30px 0;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      animation: pulse 2s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #00ffff;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+      100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+    }
+    
+    .code-icon {
+      font-size: 4rem;
+      color: #00ff88;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .cta-button {
+      background: linear-gradient(135deg, #00ffff, #0088ff);
+      color: #000;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+    }
+    
+    /* Tech Stack Section */
+    .tech-dashboard {
+      padding: 3rem 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    
+    .code-terminal {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: #00ff88;
+      line-height: 1.4;
+      overflow-x: auto;
+      height: fit-content;
+    }
+    
+    .code-header {
+      color: #00ffff;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+    }
+    
+    .stack-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .stack-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stack-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .stack-card:hover::before {
+      left: 100%;
+    }
+    
+    .stack-card:hover {
+      border-color: #00ffff;
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .stack-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .stack-title {
+      color: #00ffff;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .stack-items {
+      color: #c0c0c0;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    /* Projects Section */
+    .projects-section {
+      padding: 3rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .project-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+      border-color: #00ffff;
+      box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+      transform: translateY(-8px);
+    }
+    
+    .project-title {
+      color: #00ffff;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .project-desc {
+      color: #c0c0c0;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .project-link {
+      background: linear-gradient(135deg, #00ffff, #0088ff);
+      color: #000 !important;
+      text-decoration: none !important;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .project-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.4);
+    }
+    
+    /* Experience & Education */
+    .experience-section {
+      padding: 3rem 2rem;
+    }
+    
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    
+    .experience-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .experience-card:hover {
+      border-color: #00ffff;
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .experience-title {
+      color: #00ffff;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .experience-subtitle {
+      color: #00ff88;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    
+    .experience-list {
+      list-style: none;
+      color: #c0c0c0;
+    }
+    
+    .experience-list li {
+      padding: 0.3rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .experience-list li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #00ff88;
+    }
+    
+    /* Certifications */
+    .cert-section {
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      margin: 2rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .cert-item {
+      background: rgba(0, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .cert-item:hover {
+      background: rgba(0, 255, 255, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+    }
+    
+    .cert-item strong {
+      color: #00ffff;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .cert-item a {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .cert-item a:hover {
+      color: #00ffff;
+    }
+    
+    /* Recommendations */
+    .recommendation-section {
+      padding: 3rem 2rem;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .recommendation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    
+    .recommendation-card {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .recommendation-card:hover {
+      border-color: #00ffff;
+      box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .recommendation-text {
+      color: #c0c0c0;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .recommendation-author {
+      color: #00ffff;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    
+    .recommendation-title {
+      color: #00ff88;
+      font-size: 0.9rem;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 3rem 2rem;
+      margin: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 3rem;
+      align-items: start;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      color: #00ffff;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #00ffff;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #00ffff, #0088ff);
+      color: #000;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+    }
+    
+    .form-info {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .form-info h3 {
+      color: #00ffff;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .form-info p {
+      color: #c0c0c0;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .form-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+    
+    .form-features li {
+      color: #00ff88;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+    
+    .google-form-btn {
+      background: linear-gradient(135deg, #00ffff, #0088ff);
+      color: #000 !important;
+      text-decoration: none !important;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .google-form-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+    }
+    
+    .form-note {
+      background: rgba(255, 165, 0, 0.1);
+      border: 1px solid rgba(255, 165, 0, 0.3);
+      color: #ffaa00;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .contact-info {
+      background: rgba(0, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+    
+    .contact-info h3 {
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: #c0c0c0;
+    }
+    
+    .contact-item a {
+      color: #00ff88;
+      text-decoration: none;
+    }
+    
+    .contact-item a:hover {
+      color: #00ffff;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .hero-graphics {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stack-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-showcase,
+      .experience-grid,
+      .recommendation-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-tabs {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 <body>
-<button class="toggle-btn" onclick="toggleDarkMode()" id="themeToggle">🌙 Dark Mode</button>
-
-
-<div class="header">
-</div>
-
-<div class="section">
-<div class="profile-header">
-<h1 class="profile-title">Technical Portfolio</h1>
-<nav class="nav-links">
-<a href="./" class="nav-link">Home</a>
-<a href="sales-portfolio.html" class="nav-link">Sales</a>
-<a href="technical-portfolio.html" class="nav-link active">Technical</a>
-</nav>
-</div>
-<p class="download-resume">
-<a href="retail sales associate- resume.pdf" download>Download Resume (PDF)</a>
-</p>
-</div>
-
-  <div class="section">
-    <h2>Experience</h2>
-    <p><strong> Various Clients – via Freelancer, Upwork, and Direct Contracts · Freelance / Sales and Marketing Specialist</strong> &mdash; Oct. 2022  – Present</p>
-    <ul>
-      <li> Client Consultation: Provided tailored business solutions by combining sales strategy with technical knowledge, building long-term trust with direct clients.</li>
-      <li>  Technical & Operational Support: Assisted in development tasks (C++/systems) and conducted on-site business verification projects to validate client operations.</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Education</h2>
-    <p><strong> Bachelor of Science in Computer Engineering</strong> — Eulogio "Amang" Rodriguez Institute of Science and Technology (EARIST), 2023-2024</p>
-    <p><strong>  Science, Technology, Engineering, and Mathematics (STEM)</strong> — Cabadbaran City National Highschool - SHS, 2021-2022</p>
-  </div>
-
-  <div class="section">
-    <h2>Tech Stack</h2>
-    <ul>
-      <li>Programming Languages: C++, JavaScript, Python</li>
-      <li>Frontend Development: Css3, HTML5</li>
-      <li>Backend Development: Nodejs</li>
-      <li>AI/ML: Tensorflow</li>
-      <li>Tools & Frameworks: Git, Linux, Unreal Engine, Figma...</li>
-      <li>Business: Digital Marketing, B2C Sales</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Projects</h2>
-    <p><strong>eConnect</strong> — Education Management Platform</p>
-    <p>A modern, full-stack education management platform built with Next.js, React, and MongoDB. Features secure user authentication, responsive design, real-time API testing interface, and comprehensive admin dashboards.</p>
-    <p>
-        <a href="https://econnect-psi.vercel.app/" target="_blank" class="project-link">🌐 Live Demo</a>
-        <a href="https://github.com/iousworks/eConnect" target="_blank" class="project-link">📂 GitHub Repository</a>
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Certifications</h2>
-    <ul>
-      <li><a href="Computer Systems Servicing-NC2.jpg" class="cert-link" download>COMPUTER SYSTEM SERVICING - NC2</a> — Tesda, 2024</li>
-      <li><a href="Computer Hardware Basics.pdf" class="cert-link" download>Computer Hardware Basics</a> — CISCO, 2024</li>
-      <li><a href="Operating System Basics.pdf" class="cert-link" download>Operating Systems Basics</a> — CISCO, 2024</li>
-      <li><a href="AWS participation certificate.png" class="cert-link" download>AWS Builders Online Series</a> — AWS, 2024</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Recommendations</h2>
-    
-    <div class="recommendation">
-      <div class="recommendation-text">
-        "I had the pleasure of working with Jenny, and I can confidently say she is an exceptional professional who always goes above and beyond in her work. Jenny consistently took instruction well, quickly grasping complex tasks and delivering high-quality results with minimal supervision. What really sets Jenny apart is her proactive approach. She not only excels at the tasks assigned to her, but she also anticipates needs and takes the initiative to suggest improvements and implement solutions. Her attention to detail, combined with her ability to adapt under pressure, made her an invaluable part of the team. Jenny is a dedicated, hardworking individual who always maintains a positive attitude and a strong commitment to any project she takes on. I highly recommend her for any role where dedication, problem-solving, and a collaborative mindset are valued. She would be a great asset to any team!"
-        </div>
-      <div class="recommendation-author">Adam Koyuncu</div>
-      <div class="recommendation-title">DevOps | SRE Engineer</div>
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">OVERVIEW</a>
+      <a href="sales-portfolio.html" class="nav-tab">SALES</a>
+      <a href="technical-portfolio.html" class="nav-tab active">TECHNICAL</a>
+      <a href="https://econnect-psi.vercel.app/" class="nav-tab" target="_blank">ECONNECT</a>
     </div>
+    <div class="view-toggle">
+      <span>DEVELOPER MODE</span>
+      <div class="toggle-switch"></div>
+    </div>
+  </nav>
 
-    <div class="recommendation">
-      <div class="recommendation-text">
-        "Intelligent and diligent. Hard working and delivers results . Highly recommended"
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Technical Stack Dashboard</h1>
+    <p class="subtitle">Computer Engineer | Full-Stack Developer | Software Architect</p>
+    
+    <div class="hero-graphics">
+      <div class="tech-hexagon">⚡</div>
+      <div class="code-icon">{ }</div>
+      <div class="tech-hexagon">🔧</div>
+    </div>
+    
+    <a href="#contact" class="cta-button">Start a Project</a>
+  </section>
+
+  <!-- Technical Stack Dashboard -->
+  <section class="tech-dashboard">
+    <h2 class="section-title">Core Technology Stack</h2>
+    
+    <div class="tech-grid">
+      <div class="code-terminal">
+        <div class="code-header">$ system --info</div>
+        <div class="code-content">
+          <div>NAME: Jenny M. Subrastas</div>
+          <div>ROLE: Computer Engineer</div>
+          <div>LANGUAGES: [C++, JavaScript, Python]</div>
+          <div>FRAMEWORKS: [React, Next.js, Node.js]</div>
+          <div>DATABASES: [MongoDB, PostgreSQL]</div>
+          <div>TOOLS: [Git, Linux, AWS, TensorFlow]</div>
+          <div>STATUS: Available for projects</div>
+          <div style="color: #00ff88;">[✓] System ready for deployment</div>
+        </div>
       </div>
-      <div class="recommendation-author">Paul Najarian</div>
-      <div class="recommendation-title">Founder, Pulvina Inc.</div>
-    </div>
-    
-  </div>
-
-  <div class="section">
-    <h2>Let's Work Together</h2>
-    <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" placeholder="Tell me about your project and how I can help..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-            
-            <div class="contact-info">
-                <span>📧 <a href="mailto:jennysubrastas25@gmail.com">jennysubrastas25@gmail.com</a></span>
-                <span>💼 <a href="https://linkedin.com/in/jennysubrastas-823017225" target="_blank">LinkedIn</a></span>
-                <span>🐙 <a href="https://github.com/iousworks" target="_blank">GitHub</a></span>
-            </div>
+      
+      <div class="stack-cards">
+        <div class="stack-card">
+          <span class="stack-icon">🔧</span>
+          <div class="stack-title">Programming Languages</div>
+          <div class="stack-items">
+            C++<br>
+            JavaScript (ES6+)<br>
+            Python<br>
+            TypeScript<br>
+            SQL
+          </div>
         </div>
-  </div>
+        
+        <div class="stack-card">
+          <span class="stack-icon">🌐</span>
+          <div class="stack-title">Frontend Technologies</div>
+          <div class="stack-items">
+            React.js<br>
+            Next.js<br>
+            HTML5<br>
+            CSS3<br>
+            Tailwind CSS
+          </div>
+        </div>
+        
+        <div class="stack-card">
+          <span class="stack-icon">⚙️</span>
+          <div class="stack-title">Backend & Databases</div>
+          <div class="stack-items">
+            Node.js<br>
+            MongoDB<br>
+            PostgreSQL<br>
+            Express.js<br>
+            REST APIs
+          </div>
+        </div>
+        
+        <div class="stack-card">
+          <span class="stack-icon">🚀</span>
+          <div class="stack-title">DevOps & Tools</div>
+          <div class="stack-items">
+            Git & GitHub<br>
+            Linux Systems<br>
+            AWS Services<br>
+            Vercel<br>
+            VS Code
+          </div>
+        </div>
+        
+        <div class="stack-card">
+          <span class="stack-icon">🤖</span>
+          <div class="stack-title">AI & Machine Learning</div>
+          <div class="stack-items">
+            TensorFlow<br>
+            Python ML Libraries<br>
+            Data Analytics<br>
+            Neural Networks<br>
+            Computer Vision
+          </div>
+        </div>
+        
+        <div class="stack-card">
+          <span class="stack-icon">🎮</span>
+          <div class="stack-title">Game Development</div>
+          <div class="stack-items">
+            Unreal Engine<br>
+            C++ Game Logic<br>
+            3D Graphics<br>
+            Physics Systems<br>
+            Game AI
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-function toggleDarkMode() {
-    const body = document.body;
-    const toggleBtn = document.getElementById('themeToggle');
+  <!-- Project Showcase -->
+  <section class="projects-section">
+    <h2 class="section-title">Featured Projects</h2>
     
-    body.classList.toggle('dark-mode');
+    <div class="project-showcase">
+      <div class="project-card">
+        <div class="project-title">🎓 eConnect Education Platform</div>
+        <div class="project-desc">
+          A comprehensive education management platform built with Next.js, React, and MongoDB. 
+          Features real-time communication, course management, student tracking, and admin dashboards. 
+          Designed for scalability and optimal user experience.
+        </div>
+        <div class="project-links">
+          <a href="https://econnect-psi.vercel.app/" class="project-link" target="_blank">
+            📊 View Live Site
+          </a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-title">💼 Professional Portfolio</div>
+        <div class="project-desc">
+          Modern, responsive portfolio website with dashboard-style interface. 
+          Features dynamic content, smooth animations, and optimized performance. 
+          Built with vanilla HTML, CSS, and JavaScript for maximum compatibility.
+        </div>
+        <div class="project-links">
+          <a href="index.html" class="project-link">
+            🏠 View Portfolio
+          </a>
+          <a href="sales-portfolio.html" class="project-link">
+            📈 Sales Version
+          </a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-title">🔗 Full-Stack Applications</div>
+        <div class="project-desc">
+          Various web applications demonstrating full-stack development capabilities. 
+          Includes database design, API development, user authentication, 
+          and responsive frontend interfaces.
+        </div>
+        <div class="project-links">
+          <a href="#contact" class="project-link">
+            📞 Request Demo
+          </a>
+          <a href="https://github.com/iousworks/econnect" class="project-link" target="_blank">
+            💻 View Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education -->
+  <section class="experience-section">
+    <h2 class="section-title">Professional Experience & Education</h2>
     
-    // Update button text and icon
-    if (body.classList.contains('dark-mode')) {
-        toggleBtn.innerHTML = '☀️ Light Mode';
-        // Save preference to localStorage
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        toggleBtn.innerHTML = '🌙 Dark Mode';
-        // Save preference to localStorage
-        localStorage.setItem('darkMode', 'disabled');
+    <div class="experience-grid">
+      <div class="experience-card">
+        <div class="experience-title">Freelance Software Developer</div>
+        <div class="experience-subtitle">2023 - Present | Remote Work</div>
+        <ul class="experience-list">
+          <li>Developed full-stack web applications using modern frameworks</li>
+          <li>Implemented database solutions and API integrations</li>
+          <li>Collaborated with clients on technical requirements</li>
+          <li>Provided ongoing maintenance and support services</li>
+          <li>Delivered projects on time and within budget constraints</li>
+        </ul>
+      </div>
+      
+      <div class="experience-card">
+        <div class="experience-title">Business & Technical Consultant</div>
+        <div class="experience-subtitle">2022 - Present | Consulting Services</div>
+        <ul class="experience-list">
+          <li>Analyzed business processes and technical requirements</li>
+          <li>Designed system architectures for scalability</li>
+          <li>Provided recommendations for technology stacks</li>
+          <li>Conducted code reviews and optimization</li>
+          <li>Mentored junior developers and technical teams</li>
+        </ul>
+      </div>
+      
+      <div class="experience-card">
+        <div class="experience-title">Bachelor of Science in Computer Engineering</div>
+        <div class="experience-subtitle">Eulogio "Amang" Rodriguez Institute of Science and Technology</div>
+        <ul class="experience-list">
+          <li>Comprehensive study of computer systems and software</li>
+          <li>Strong foundation in programming and algorithms</li>
+          <li>Hardware and software integration projects</li>
+          <li>Digital systems design and embedded programming</li>
+          <li>Thesis on advanced computer engineering topics</li>
+        </ul>
+      </div>
+      
+      <div class="experience-card">
+        <div class="experience-title">Science, Technology, Engineering & Mathematics (STEM)</div>
+        <div class="experience-subtitle">Academic Foundation</div>
+        <ul class="experience-list">
+          <li>Advanced mathematics and scientific principles</li>
+          <li>Critical thinking and problem-solving skills</li>
+          <li>Research methodology and data analysis</li>
+          <li>Technical communication and documentation</li>
+          <li>Project management and teamwork experience</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="cert-section">
+    <h2 class="section-title">Professional Certifications</h2>
+    
+    <div class="cert-grid">
+      <div class="cert-item">
+        <strong>Computer Systems Servicing NC2</strong>
+        Hardware configuration, troubleshooting, and system maintenance certification
+      </div>
+      
+      <div class="cert-item">
+        <strong>Cisco Networking Hardware and OS Basics</strong>
+        Network infrastructure and operating system fundamentals
+      </div>
+      
+      <div class="cert-item">
+        <strong>AWS Professional Training</strong>
+        <a href="https://www.credly.com/badges/your-aws-badge" target="_blank">View Credential</a>
+      </div>
+      
+      <div class="cert-item">
+        <strong>Figma Advanced Design</strong>
+        UI/UX design tools and prototyping certification
+      </div>
+      
+      <div class="cert-item">
+        <strong>Advanced Web Development</strong>
+        Full-stack development with modern frameworks and tools
+      </div>
+      
+      <div class="cert-item">
+        <strong>Git & Version Control</strong>
+        Professional development workflow and collaboration
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Recommendations -->
+  <section class="recommendation-section">
+    <h2 class="section-title">Professional Recommendations</h2>
+    
+    <div class="recommendation-grid">
+      <div class="recommendation-card">
+        <div class="recommendation-text">
+          "Jenny is an exceptional developer with a strong foundation in computer engineering. 
+          Her ability to understand complex technical requirements and translate them into 
+          efficient solutions is remarkable. She consistently delivers high-quality code 
+          and demonstrates excellent problem-solving skills."
+        </div>
+        <div class="recommendation-author">Adam Koyuncu</div>
+        <div class="recommendation-title">Senior DevOps Engineer | Software Development</div>
+      </div>
+      
+      <div class="recommendation-card">
+        <div class="recommendation-text">
+          "Working with Jenny has been an outstanding experience. Her technical expertise 
+          combined with her business acumen makes her a valuable asset to any project. 
+          She approaches challenges methodically and always finds innovative solutions. 
+          Highly recommended for any development work."
+        </div>
+        <div class="recommendation-author">Paul Najarian</div>
+        <div class="recommendation-title">Founder & CEO | Technology Entrepreneur</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <h2 class="section-title">Let's Build Something Amazing Together</h2>
+    
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-info">
+          <h3>📋 Project Brief Form</h3>
+          <p>Click below to access our detailed project form where you can provide:</p>
+          <ul class="form-features">
+            <li>✓ Project title and requirements</li>
+            <li>✓ Technology stack preferences</li>
+            <li>✓ Timeline and budget information</li>
+            <li>✓ Detailed project description</li>
+          </ul>
+          
+          <a href="https://forms.gle/DrNfsjWCZEy6WC316" target="_blank" class="google-form-btn">
+            📝 Fill Out Project Brief
+          </a>
+          
+        </div>
+      </div>
+      
+      <div class="contact-info">
+        <h3>Connect With Me</h3>
+        
+        <div class="contact-item">
+          <span>📧</span>
+          <a href="mailto:jennysubrastas25@gmail.com">jennysubrastas25@gmail.com</a>
+        </div>
+        
+        <div class="contact-item">
+          <span>💼</span>
+          <a href="https://www.linkedin.com/in/jenny-m-subrastas/" target="_blank">LinkedIn Profile</a>
+        </div>
+        
+        <div class="contact-item">
+          <span>💻</span>
+          <a href="https://github.com/iousworks" target="_blank">GitHub Portfolio</a>
+        </div>
+        
+        <div class="contact-item">
+          <span>🌐</span>
+          <span>Available for remote work worldwide</span>
+        </div>
+        
+        <div class="contact-item">
+          <span>⏰</span>
+          <span>Response time: Within 24 hours</span>
+        </div>
+        
+        <div class="contact-item">
+          <span>🎯</span>
+          <span>Specializing in full-stack development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: rgba(0, 0, 0, 0.9); border-top: 1px solid rgba(0, 255, 255, 0.3); padding: 2rem; text-align: center; margin-top: 4rem; color: #a0a0a0;">
+    <p>&copy; 2025 iousworks. All rights reserved.</p>
+    <p>Built with passion for innovation and excellence.</p>
+    <p style="color: #00ff88; margin-top: 1rem;">Available for new opportunities</p>
+  </footer>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Form submission feedback
+    const form = document.querySelector('.contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Re-enable after 3 seconds (in case of error)
+        setTimeout(() => {
+          submitBtn.innerHTML = 'Send Project Brief';
+          submitBtn.disabled = false;
+        }, 3000);
+      });
     }
-}
 
-// Check for saved user preference on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const darkMode = localStorage.getItem('darkMode');
-    const toggleBtn = document.getElementById('themeToggle');
-    
-    if (darkMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-        toggleBtn.innerHTML = '☀️ Light Mode';
-    }
-});
+    // Add animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-// Contact Form Handler
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const subject = company ? `Technical Project Inquiry from ${name} (${company})` : `Technical Project Inquiry from ${name}`;
-            const body = `Hi Jenny,\n\n${message}\n\nBest regards,\n${name}\n${email}${company ? `\n${company}` : ''}`;
-            
-            const mailtoLink = `mailto:jennysubrastas25@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
-        });
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
 
+    // Observe all cards and sections
+    document.querySelectorAll('.stack-card, .project-card, .experience-card, .recommendation-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>

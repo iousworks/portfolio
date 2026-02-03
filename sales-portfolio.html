@@ -3,718 +3,848 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenny M. Subrastas - Sales Portfolio</title>
+    <title>Jenny M. Subrastas - Sales Performance Dashboard</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="profile pic.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            background-color: #fff;
-            color: #222;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        h1, h2 {
-            margin-bottom: 0.2em;
-        }
-
-        h1 {
-            font-size: 2em;
-        }
-
-        h2 {
-            font-size: 1.4em;
-            margin-top: 1.4em;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 0.2em;
-            transition: border-bottom-color 0.3s ease;
-        }
-
-        a {
-            color: #0066cc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        ul {
+        * {
             margin: 0;
-            padding-left: 20px;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
+        
+        /* Remove all underlines globally */
+        a {
+            text-decoration: none !important;
         }
-
-        .profile-header {
+        
+        a:hover {
+            text-decoration: none !important;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
-
-        .profile-title {
-            margin: 0;
-            font-size: 2em;
-        }
-
-        .nav-links {
+        
+        .nav-tabs {
             display: flex;
-            gap: 0.5rem;
+            gap: 0;
         }
-
-        .nav-link {
-            color: #0066cc;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 2px solid #e5e7eb;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            background: #f8fafc;
-        }
-
-        .nav-link:hover {
-            background: #e5e7eb;
-            border-color: #0066cc;
-        }
-
-        .nav-link.active {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-        }
-
-        .dark-mode .nav-link {
-            background: #374151;
-            border-color: #4b5563;
-            color: #d1d5db;
-        }
-
-        .dark-mode .nav-link:hover {
-            background: #4b5563;
-            border-color: #66aaff;
-        }
-
-        .dark-mode .nav-link.active {
-            background: #66aaff;
-            color: #1f2937;
-            border-color: #66aaff;
-        }
-
-        .download-resume {
-            margin-top: 0.5em;
-            font-size: 1em;
-        }
-
-        .section {
-            margin-bottom: 1.5em;
-        }
-
-        .dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        .dark-mode h2 {
-            border-bottom-color: #444;
-        }
-
-        .dark-mode a {
-            color: #66aaff;
-        }
-
-        .dark-mode .toggle-btn {
-            background-color: #333;
-            color: #e0e0e0;
-            border-color: #555;
-        }
-
-        .toggle-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 6px 10px;
-            border: 1px solid #666;
-            border-radius: 4px;
-            background-color: #fff;
-            color: #222;
+        
+        .nav-tab {
+            background: transparent;
+            color: #a0a0a0;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 0.8rem 1.5rem;
             cursor: pointer;
-            font-size: 12px;
             transition: all 0.3s ease;
-        }
-
-        .toggle-btn:hover {
-            background-color: #f0f0f0;
-        }
-
-        .cert-link {
-            font-weight: bold;
-            color: #0066cc;
-            text-decoration: none;
-            border-bottom: 1px dotted #0066cc;
-        }
-
-        .cert-link:hover {
-            background-color: #f0f8ff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             text-decoration: none;
         }
-
-        .dark-mode .cert-link {
-            color: #66aaff;
-            border-bottom-color: #66aaff;
+        
+        .nav-tab:first-child {
+            border-radius: 5px 0 0 5px;
         }
-
-        .dark-mode .cert-link:hover {
-            background-color: rgba(102, 170, 255, 0.1);
+        
+        .nav-tab:last-child {
+            border-radius: 0 5px 5px 0;
         }
-
-        /* KPI Stats - Matching main page style */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        
+        .nav-tab.active {
+            background: rgba(0, 255, 255, 0.2);
+            color: #00ffff;
+            border-color: #00ffff;
+        }
+        
+        .nav-tab:hover {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+        }
+        
+        .view-toggle {
+            display: flex;
+            align-items: center;
             gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .kpi-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            background: #f0f8ff;
-        }
-
-        .kpi-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #0066cc;
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-label {
-            color: #666;
-            font-weight: 500;
-        }
-
-        .dark-mode .kpi-card {
-            background: #2a2a2a;
-            border-color: #444;
-        }
-
-        .dark-mode .kpi-card:hover {
-            background: #333;
-        }
-
-        .dark-mode .kpi-number {
-            color: #66aaff;
-        }
-
-        .dark-mode .kpi-label {
-            color: #aaa;
-        }
-
-        /* Sales Process - Matching main page style */
-        .process-flow {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            border: 1px solid #e5e7eb;
-        }
-
-        .flow-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .flow-step {
-            text-align: center;
-        }
-
-        .flow-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .flow-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .flow-desc {
             font-size: 0.9rem;
-            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        .dark-mode .process-flow {
-            background: #2a2a2a;
-            border-color: #444;
-        }
-
-        .dark-mode .flow-desc {
-            color: #aaa;
-        }
-
-        /* Sales Highlights - Matching main page style */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .highlight-card {
-            background: #f8f9fa;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1.5rem;
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00ffff;
+            border-radius: 15px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .highlight-card:hover {
-            background: #f0f8ff;
-            transform: translateY(-2px);
+        
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 22px;
+            height: 22px;
+            background: #00ff88;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
-
-        .highlight-title {
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00ffff, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+        
+        .hero .subtitle {
             font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
         }
-
-        .highlight-desc {
-            color: #666;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+        
+        .hero-graphics {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin: 2rem 0;
         }
-
-        .highlight-metric {
-            background: #0066cc;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
+        
+        .hexagon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.05));
+            border: 2px solid #00ffff;
+            position: relative;
+            margin: 30px 0;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: pulse 2s ease-in-out infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #00ffff;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+        }
+        
+        .chart-icon {
+            font-size: 4rem;
+            color: #00ff88;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #000;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            text-decoration: none;
             display: inline-block;
         }
-
-        .dark-mode .highlight-card {
-            background: #2a2a2a;
-            border-color: #444;
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
         }
-
-        .dark-mode .highlight-card:hover {
-            background: #333;
+        
+        /* Dashboard Section */
+        .dashboard {
+            padding: 3rem 2rem;
         }
-
-        .dark-mode .highlight-desc {
-            color: #ccc;
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
-
-        .dark-mode .highlight-metric {
-            background: #66aaff;
-            color: #1f2937;
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
-
-        /* Recommendations Section */
-        .recommendation {
-            background-color: #f8f9fa;
-            border-left: 4px solid #0066cc;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+        .metric-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .metric-card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .metric-label {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .metric-icon {
+            font-size: 1.2rem;
+            color: #00ffff;
+        }
+        
+        .metric-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        .metric-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #00ff88);
+            border-radius: 2px;
+            animation: progress-fill 2s ease-out;
+        }
+        
+        @keyframes progress-fill {
+            from { width: 0%; }
+        }
+        
+        /* Pipeline Section */
+        .pipeline-section {
+            padding: 2rem;
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .pipeline-title {
+            color: #00ffff;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .pipeline-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pipeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #00ff88);
+            border-radius: 10px;
+            width: 85%;
+            animation: pipeline-fill 3s ease-out;
+        }
+        
+        @keyframes pipeline-fill {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+        
+        .pipeline-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tech-partners {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tech-logo {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
-        .recommendation:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
+        
+        .tech-logo:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+            color: #00ffff;
         }
-        .recommendation-text {
-            font-style: italic;
-            margin-bottom: 15px;
-            color: #555;
-            line-height: 1.6;
+        
+        /* Experience Section */
+        .experience-section {
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
         }
-        .recommendation-author {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
+        
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        .recommendation-title {
-            color: #666;
-            font-size: 0.9em;
-        }
-        .dark-mode .recommendation {
-            background-color: #2a2a2a;
-            border-left-color: #66aaff;
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
-        }
-        .dark-mode .recommendation:hover {
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.15);
-        }
-        .dark-mode .recommendation-text {
-            color: #ccc;
-        }
-        .dark-mode .recommendation-author {
-            color: #e0e0e0;
-        }
-        .dark-mode .recommendation-title {
-            color: #aaa;
-        }
-
-        /* Contact Form Styling */
-        .contact-form {
-            background: #f8f9fa;
+        
+        .experience-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
             padding: 2rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            border: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
+        
+        .experience-card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .experience-title {
+            color: #00ffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-company {
+            color: #00ff88;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .experience-list {
+            list-style: none;
+            color: #c0c0c0;
+        }
+        
+        .experience-list li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .experience-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem;
+            margin: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: start;
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
+        
         .form-group label {
             display: block;
+            color: #00ffff;
             margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
+            font-weight: 500;
         }
+        
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #e5e7eb;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             border-radius: 8px;
+            color: #e0e0e0;
             font-size: 1rem;
             transition: border-color 0.3s ease;
-            font-family: Arial, sans-serif;
         }
+        
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #0066cc;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+        
         .submit-btn {
-            background: #0066cc;
-            color: white;
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #000;
             padding: 0.75rem 2rem;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        
         .submit-btn:hover {
-            background: #0052a3;
             transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
         }
+        
         .contact-info {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .contact-info h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
             display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #c0c0c0;
         }
-        .contact-info a {
-            color: #0066cc;
+        
+        .contact-item a {
+            color: #00ff88;
             text-decoration: none;
-            font-weight: 500;
         }
-        .dark-mode .contact-form {
-            background: #2a2a2a;
-            border-color: #444;
+        
+        .contact-item a:hover {
+            color: #00ffff;
         }
-        .dark-mode .form-group label {
-            color: #e0e0e0;
+        
+        .form-info {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
         }
-        .dark-mode .form-group input,
-        .dark-mode .form-group textarea {
-            background: #333;
-            border-color: #555;
-            color: #e0e0e0;
+        
+        .form-info h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
-        .dark-mode .form-group input:focus,
-        .dark-mode .form-group textarea:focus {
-            border-color: #66aaff;
+        
+        .form-info p {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
-        .dark-mode .submit-btn {
-            background: #66aaff;
-            color: #1f2937;
+        
+        .form-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
         }
-        .dark-mode .submit-btn:hover {
-            background: #5599ee;
+        
+        .form-features li {
+            color: #00ff88;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
         }
-
-        /* Responsive Navigation - Matching main page */
+        
+        .google-form-btn {
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+            color: #000 !important;
+            text-decoration: none !important;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .google-form-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+        }
+        
+        .form-note {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            color: #ffaa00;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .profile-header {
+            .top-nav {
                 flex-direction: column;
                 gap: 1rem;
-                text-align: center;
+                padding: 1rem;
             }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            .kpi-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            .flow-steps {
-                grid-template-columns: 1fr;
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
+            
+            .hero-graphics {
                 flex-direction: column;
-                width: 100%;
+                gap: 1rem;
             }
-
-            .nav-link {
-                width: 100%;
-                text-align: center;
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tech-partners {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleDarkMode()" id="themeToggle">🌙 Dark Mode</button>
-
-    <div class="header">
-    </div>
-
-    <div class="section">
-        <div class="profile-header">
-            <h1 class="profile-title">Sales Portfolio</h1>
-            <nav class="nav-links">
-                <a href="./" class="nav-link">Home</a>
-                <a href="sales-portfolio.html" class="nav-link active">Sales</a>
-                <a href="technical-portfolio.html" class="nav-link">Technical</a>
-            </nav>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-tabs">
+            <a href="index.html" class="nav-tab">OVERVIEW</a>
+            <a href="sales-portfolio.html" class="nav-tab active">SALES</a>
+            <a href="technical-portfolio.html" class="nav-tab">TECHNICAL</a>
+            <a href="https://econnect-psi.vercel.app/" class="nav-tab" target="_blank">ECONNECT</a>
         </div>
-        <p class="download-resume">
-            <a href="retail sales associate- resume.pdf" download>Download Resume (PDF)</a>
-        </p>
-    </div>
-
-    <div class="section">
-        <h2>Performance Metrics</h2>
-        <div class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-number">125%</div>
-                <div class="kpi-label">Quota Achievement</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-number">90%</div>
-                <div class="kpi-label">Client Retention Rate</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-number">8+</div>
-                <div class="kpi-label">International Clients</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-number">40%</div>
-                <div class="kpi-label">YoY Growth Generated</div>
-            </div>
+        <div class="view-toggle">
+            <span>VIEW: TECH / SALES</span>
+            <div class="toggle-switch"></div>
         </div>
-    </div>
+    </nav>
 
-    <div class="section">
-        <h2>Sales Process Excellence</h2>
-        <div class="process-flow">
-            <div class="flow-steps">
-                <div class="flow-step">
-                    <div class="flow-icon">🎯</div>
-                    <div class="flow-title">Prospecting</div>
-                    <div class="flow-desc">Strategic lead identification and market research</div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">💬</div>
-                    <div class="flow-title">Pitching</div>
-                    <div class="flow-desc">Tailored presentations and value propositions</div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">🤝</div>
-                    <div class="flow-title">Negotiation</div>
-                    <div class="flow-desc">Win-win solutions and terms optimization</div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">✅</div>
-                    <div class="flow-title">Closing</div>
-                    <div class="flow-desc">Deal finalization and contract execution</div>
-                </div>
-                <div class="flow-step">
-                    <div class="flow-icon">🔄</div>
-                    <div class="flow-title">Retention</div>
-                    <div class="flow-desc">Long-term relationship building and growth</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Working Experience</h2>
-        <div class="experience-item">
-            <p><strong>Various Clients – via Freelancer, Upwork, and Direct Contracts · Freelance / Sales and Marketing Specialist</strong> &mdash; Oct. 2022 – Present</p>
-            <ul class="experience-desc">
-                <li>Sales & Outreach: Conducted lead generation, client prospecting, and targeted outreach campaigns, achieving a 90% repeat-client rate.</li>
-                <li>Client Consultation: Provided tailored business solutions by combining sales strategy with technical knowledge, building long-term trust with direct clients.</li>
-                <li>Marketing & Content Development: Delivered 60,000+ words of marketing content and designed professional presentations supporting client campaigns.</li>
-                <li>Technical & Operational Support: Assisted in development tasks (C++/systems) and conducted on-site business verification projects to validate client operations.</li>
-                <li>Project Delivery: Completed 8+ contracts across international clients with measurable results in sales support, marketing visibility, and operational accuracy.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <p><strong>Collecticons Inc. Filbar's Multiverse GH / Sales Associate</strong> &mdash; Mar. 2025 – Aug. 2025</p>
-            <ul class="experience-desc">
-                <li>Converted 15+ daily customer inquiries into purchases through tailored service.</li>
-                <li>Maintained 100% stock accuracy and optimized product displays to boost sales.</li>
-                <li>Built customer loyalty by resolving concerns quickly and professionally.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <p><strong>Green Life AVM Advertising / Sales Representative</strong> &mdash; Feb. 2022 – Jul. 2022</p>
-            <ul class="experience-desc">
-                <li>Conducted live product demonstrations and persuasive sales presentations.</li>
-                <li>Negotiated and closed multiple deals, consistently meeting targets.</li>
-                <li>Researched customer behavior to improve targeting and conversion rates.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Certifications</h2>
-        <ul>
-            <li><a href="Digital Marketing.png" class="cert-link" download>Fundamentals of Digital Marketing</a> — Google, 2023</li>
-            <li><a href="Administrative certification.png" class="cert-link" download>Administrative Professional Foundations</a> — LinkedIn, 2023</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Recommendations</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Bridging Code<br>Sales Performance<br>Dashboard</h1>
+        <p class="subtitle">Technical proficiency meets revenue generation</p>
         
-    <div class="recommendation">
-      <div class="recommendation-text">
-        "She has quick adaptability and understood our requirements. She followed our guidelines and submitted a very good job."
-      </div>
-      <div class="recommendation-author">Van Thi N</div>
-      <div class="recommendation-title">Staff, Confirmis</div>
-    </div>
+        <div class="hero-graphics">
+            <div class="chart-icon">📊</div>
+            <div class="hexagon">⚡</div>
+            <div class="chart-icon">💰</div>
+        </div>
+        
+        <a href="retail sales associate- resume.pdf" class="cta-button" download>View My ROI</a>
+    </section>
 
-    </div>
+    <!-- Sales Performance Dashboard -->
+    <section class="dashboard">
+        <h2 class="section-title">Sales Performance Dashboard</h2>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Quota Attainment</div>
+                <div class="metric-value">
+                    125%
+                    <span class="metric-icon">↗</span>
+                </div>
+                <div class="metric-progress">
+                    <div class="metric-progress-fill" style="width: 125%"></div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Avg Deal Size</div>
+                <div class="metric-value">
+                    +$5K
+                    <span class="metric-icon">📈</span>
+                </div>
+                <div class="metric-progress">
+                    <div class="metric-progress-fill" style="width: 85%"></div>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Client Retention</div>
+                <div class="metric-value">
+                    90%
+                    <span class="metric-icon">🔄</span>
+                </div>
+                <div class="metric-progress">
+                    <div class="metric-progress-fill" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pipeline -->
+        <div class="pipeline-section">
+            <div class="pipeline-title">Pipeline</div>
+            <div class="pipeline-bar">
+                <div class="pipeline-progress"></div>
+            </div>
+            <div class="pipeline-labels">
+                <span>PROSPECTING</span>
+                <span>DISCOVERY</span>
+                <span>CLOSING</span>
+            </div>
+            <div class="tech-partners">
+                <div class="tech-logo">Freelancer</div>
+                <div class="tech-logo">Upwork</div>
+                <div class="tech-logo">Direct</div>
+                <div class="tech-logo">Retail</div>
+            </div>
+        </div>
+    </section>
 
-    <div class="section">
-        <h2>Let's Work Together</h2>
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <h2 class="section-title">Professional Experience</h2>
+        
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="experience-title">Freelance Sales & Marketing Specialist</div>
+                <div class="experience-company">Various Clients – Freelancer, Upwork & Direct | Oct 2022 – Present</div>
+                <ul class="experience-list">
+                    <li>Conducted lead generation and targeted outreach, achieving 90% repeat-client rate</li>
+                    <li>Provided tailored business solutions combining sales strategy with technical knowledge</li>
+                    <li>Delivered 60,000+ words of marketing content and professional presentations</li>
+                    <li>Completed 8+ international contracts with measurable sales support results</li>
+                    <li>Assisted in technical development tasks (C++/systems) and business verification</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-title">Sales Associate</div>
+                <div class="experience-company">Collecticons Inc. Filbar's Multiverse GH | Mar 2025 – Aug 2025</div>
+                <ul class="experience-list">
+                    <li>Converted 15+ daily customer inquiries into purchases through tailored service</li>
+                    <li>Maintained 100% stock accuracy and optimized product displays to boost sales</li>
+                    <li>Built customer loyalty by resolving concerns quickly and professionally</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-title">Sales Representative</div>
+                <div class="experience-company">Green Life AVM Advertising | Feb 2022 – Jul 2022</div>
+                <ul class="experience-list">
+                    <li>Conducted live product demonstrations and persuasive sales presentations</li>
+                    <li>Negotiated and closed multiple deals, consistently meeting targets</li>
+                    <li>Researched customer behavior to improve targeting and conversion rates</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-title">Key Performance Metrics</div>
+                <div class="experience-company">Overall Performance Summary</div>
+                <ul class="experience-list">
+                    <li>40% Year-over-Year growth generated across client portfolios</li>
+                    <li>8+ International clients successfully managed and retained</li>
+                    <li>125% Quota achievement through strategic sales processes</li>
+                    <li>100% Stock accuracy and inventory optimization in retail environment</li>
+                    <li>90% Client retention rate through relationship building excellence</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-title">Certifications & Recognition</div>
+                <div class="experience-company">Professional Development</div>
+                <ul class="experience-list">
+                    <li><strong>Fundamentals of Digital Marketing</strong> — Google, 2023</li>
+                    <li><strong>Administrative Professional Foundations</strong> — LinkedIn, 2023</li>
+                    <li><strong>Client Testimonial:</strong> "Quick adaptability and understood our requirements" - Van Thi N, Confirmis</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card">
+                <div class="experience-title">Sales Process Excellence</div>
+                <div class="experience-company">Methodology & Approach</div>
+                <ul class="experience-list">
+                    <li><strong>🎯 Prospecting:</strong> Strategic lead identification and market research</li>
+                    <li><strong>💬 Pitching:</strong> Tailored presentations and value propositions</li>
+                    <li><strong>🤝 Negotiation:</strong> Win-win solutions and terms optimization</li>
+                    <li><strong>✅ Closing:</strong> Deal finalization and contract execution</li>
+                    <li><strong>🔄 Retention:</strong> Long-term relationship building and growth</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2 class="section-title">Let's Work Together</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-form">
+                <div class="form-info">
+                    <h3>📋 Sales Inquiry Form</h3>
+                    <p>Click below to access our sales consultation form where you can provide:</p>
+                    <ul class="form-features">
+                        <li>✓ Your business goals and challenges</li>
+                        <li>✓ Current sales process details</li>
+                        <li>✓ Revenue targets and timeline</li>
+                        <li>✓ Specific support requirements</li>
+                    </ul>
+                    
+                    <a href="https://forms.gle/C5ZPMAUCXZikJa5K9" target="_blank" class="google-form-btn">
+                        📝 Submit Sales Inquiry
+                    </a>
+                    
                 </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" placeholder="Tell me about your sales goals and how I can help..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+            </div>
             
             <div class="contact-info">
-                <span>📧 <a href="mailto:jennysubrastas25@gmail.com">jennysubrastas25@gmail.com</a></span>
-                <span>💼 <a href="https://linkedin.com/in/jennysubrastas-823017225" target="_blank">LinkedIn</a></span>
-                <span>🐙 <a href="https://github.com/iousworks" target="_blank">GitHub</a></span>
+                <h3>Connect Directly</h3>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:jennysubrastas25@gmail.com">jennysubrastas25@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="https://linkedin.com/in/jennysubrastas-823017225" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    <span>🐙</span>
+                    <a href="https://github.com/iousworks" target="_blank">GitHub Portfolio</a>
+                </div>
+                <div class="contact-item">
+                    <span>📄</span>
+                    <a href="retail sales associate- resume.pdf" download>Download Resume</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        function toggleDarkMode() {
-            const body = document.body;
-            const toggleBtn = document.getElementById('themeToggle');
-            
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                toggleBtn.innerHTML = '☀️ Light Mode';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggleBtn.innerHTML = '🌙 Dark Mode';
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        }
+  <!-- Footer -->
+  <footer style="background: rgba(0, 0, 0, 0.9); border-top: 1px solid rgba(0, 255, 255, 0.3); padding: 2rem; text-align: center; margin-top: 4rem; color: #a0a0a0;">
+    <p>&copy; 2025 iousworks. All rights reserved.</p>
+    <p>Built with passion for innovation and excellence.</p>
+    <p style="color: #00ff88; margin-top: 1rem;">Available for new opportunities</p>
+  </footer>
 
-        // Check for saved user preference on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const darkMode = localStorage.getItem('darkMode');
-            const toggleBtn = document.getElementById('themeToggle');
-            
-            if (darkMode === 'enabled') {
-                document.body.classList.add('dark-mode');
-                toggleBtn.innerHTML = '☀️ Light Mode';
+<script>
+// Animation for metrics on scroll
+function animateMetrics() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBars = entry.target.querySelectorAll('.metric-progress-fill');
+                progressBars.forEach(bar => {
+                    bar.style.animation = 'progress-fill 2s ease-out forwards';
+                });
             }
         });
+    });
 
-        // Contact Form Handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const subject = company ? `Sales Inquiry from ${name} (${company})` : `Sales Inquiry from ${name}`;
-            const body = `Hi Jenny,\n\n${message}\n\nBest regards,\n${name}\n${email}${company ? `\n${company}` : ''}`;
-            
-            const mailtoLink = `mailto:jennysubrastas25@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailtoLink;
+    observer.observe(document.querySelector('.metrics-grid'));
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    animateMetrics();
+    
+    // Add hover effects to metric cards
+    document.querySelectorAll('.metric-card, .experience-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
         });
-    </script>
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+</script>
 </body>
 </html>

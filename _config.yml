@@ -1,0 +1,15 @@
+# Jekyll configuration for GitHub Pages clean URLs
+plugins:
+  - jekyll-redirect-from
+
+# Clean URLs
+permalink: /:title/
+
+# GitHub Pages settings
+github: [metadata]
+encoding: UTF-8
+markdown_processor: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
